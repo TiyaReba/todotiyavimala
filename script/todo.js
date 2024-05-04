@@ -29,12 +29,20 @@ function getData() {
 
 function test(data) {
   var jList = JSON.parse(data);
+  let output = `<thead>
+  <tr>
+    <th scope="col" style="text-align: center;">Task</th>
+    <th scope="col" style="text-align: center;">Status</th>
+  </tr>            
+</thead>`
   for (var n = 0; n < jList.length; n++) {
     if (jList[n].completed == true) {
-      tabBody.innerHTML += `<tr><td>${jList[n].title}</td><td><input class="form-check-input" type="checkbox" checked="true" disabled = "true"></input></td></tr>`;
+      output+= `</tr><tr><td>${jList[n].title}</td><td>
+      <input class="form-check-input" type="checkbox" checked="true" disabled = "true"></input></td></tr>`;
     } else {
-      tabBody.innerHTML += `<tr><td>${jList[n].title}</td><td><input class="form-check-input" type="checkbox" onclick="val(this)" id="box"></input></td></tr>`;
+      output+= `<tr><td>${jList[n].title}</td><td><input class="form-check-input" type="checkbox" onclick="val(this)" id="box"></input></td></tr>`;
     }
+    document.getElementById('tab').innerHTML=output
   }
 }
 function val(c) {
